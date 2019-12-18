@@ -1,7 +1,6 @@
 """Each ListNode holds a reference to its previous node
 as well as its next node in the List."""
 
-
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.value = value
@@ -150,4 +149,13 @@ class DoublyLinkedList:
         
     """Returns the highest value currently in the list"""
     def get_max(self):
-        pass
+      maxVal = 0
+      current = self.head
+
+      while current:
+        if current.value > maxVal:
+          maxVal = current.value
+
+        current = current.next
+
+      return maxVal
