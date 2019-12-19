@@ -32,7 +32,11 @@ class ListNode:
     accordingly, effectively deleting this ListNode."""
     def delete(self):
         if self.prev:
+            # deleting tail: change the next of the new tail 
+            # to null
             self.prev.next = self.next
+            # deleting head: prev of new head will be null.
+            # wipes out the connection to the old head
         if self.next:
             self.next.prev = self.prev
 
@@ -60,21 +64,25 @@ class DoublyLinkedList:
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
+    # unshift
     def add_to_head(self, value):
       new_node = ListNode(value)  
-      self.length += 1
-      # this is the first element in the list
-      if not self.head and not self.tail:
+
+      # using length here cuz i like it better
+      if self.length == 0:
         self.head = new_node
         self.tail = new_node
       else:
+        # making the new node the head
         new_node.next = self.head
         self.head.prev = new_node
         self.head = new_node  
+      self.length += 1
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
+    # shift.
     def remove_from_head(self):
         if self.head == None:
           return
@@ -85,6 +93,7 @@ class DoublyLinkedList:
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
+    # push
     def add_to_tail(self, value):
       new_node = ListNode(value) 
       self.length += 1
@@ -92,6 +101,7 @@ class DoublyLinkedList:
         self.head = new_node
         self.tail = new_node
       else:
+        # making new node the tail
         new_node.prev = self.tail
         self.tail.next = new_node
         self.tail = new_node
@@ -100,10 +110,12 @@ class DoublyLinkedList:
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
+    # why wasnt this just named pop?
     def remove_from_tail(self):
 
         if self.tail == None:
           return
+        # cant get the value of something that doesnt exist.
         value = self.tail.value
         self.delete(self.tail)
         return value
@@ -136,12 +148,15 @@ class DoublyLinkedList:
           self.tail = None
           self.length -=1
         elif self.head == node:
+          # new head is the node after current head
           self.head = node.next
           self.length -= 1
           node.delete()
         elif self.tail == node:
+          # new tail is the node before the current tail.
           self.tail = node.prev
           self.length -= 1
+          # handles the ties around this specific node
           node.delete()
         else:
           self.length -= 1
@@ -159,3 +174,4 @@ class DoublyLinkedList:
         current = current.next
 
       return maxVal
+
