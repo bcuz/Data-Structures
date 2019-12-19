@@ -12,13 +12,19 @@ class Stack:
         self.storage = DoublyLinkedList()
 
     def push(self, value):
+        self.size += 1
         self.storage.add_to_tail(value)
 
     def pop(self):
-        return self.storage.remove_from_tail()        
+        val = self.storage.remove_from_tail()        
+        if val:
+            self.size -= 1
+            return val
 
     def len(self):
-        return len(self.storage)
+        # pass
+        return self.size
+        # return len(self.storage)
 
 
 stack = Stack()
