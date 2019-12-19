@@ -1,3 +1,4 @@
+import math
 """Each ListNode holds a reference to its previous node
 as well as its next node in the List."""
 
@@ -164,8 +165,11 @@ class DoublyLinkedList:
         
     """Returns the highest value currently in the list"""
     def get_max(self):
-      maxVal = 0
+      maxVal = -math.inf
       current = self.head
+
+      if not current:
+        return 'no values in list'
 
       while current:
         if current.value > maxVal:
@@ -175,3 +179,8 @@ class DoublyLinkedList:
 
       return maxVal
 
+doubly = DoublyLinkedList()
+
+doubly.add_to_tail(7)
+doubly.add_to_tail(6)
+print(doubly.get_max())
