@@ -51,7 +51,7 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        # if specific key already there, we dont remove from dict
+        # if specific key already there, we only update it's value
         if key in self.storage:
             self.storage[key] = value
             return
