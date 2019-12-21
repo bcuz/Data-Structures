@@ -51,6 +51,11 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
+        # if specific key already there, we dont remove from dict
+        if key in self.storage:
+            self.storage[key] = value
+            return
+
         # if already at limit, remove the oldest item
         if self.current == self.limit:
             val = self.dll.remove_from_head()
