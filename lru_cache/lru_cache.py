@@ -1,5 +1,5 @@
-import sys
-sys.path.append('../doubly_linked_list')
+# import sys
+# sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
 class LRUCache:
@@ -10,6 +10,9 @@ class LRUCache:
     order, as well as a storage dict that provides fast access
     to every node stored in the cache.
     """
+    # dll has all the keys in the order they have to be. can at least
+    # try that first
+    # storage dict has both keys and values
     def __init__(self, limit=10):
         self.limit = limit
         self.current = 0
@@ -38,4 +41,24 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        # if already at limit, remove the oldest item
+        if self.current == self.limit:
+            val = self.dll.remove_from_head()
+            del self.storage[val]
+            self.current -= 1
+
+        # add the new item
+        self.storage[key] = value
+        self.dll.add_to_tail(key)
+        self.current += 1
+
+lru = LRUCache(1)
+lru.set('hi', 5)
+# print(lru.current)
+lru.set('bye', 6)
+print(lru.dll.head)
+
+# doubly = DoublyLinkedList()
+
+# doubly.add_to_tail(7)
+# print(doubly.length)
