@@ -8,8 +8,8 @@ class ListNode:
         self.prev = prev
         self.next = next
 
-    def __str__(self):
-      return str(self.value)
+    # def __str__(self):
+    #   return str(self.value)
 
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
@@ -133,7 +133,7 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        if node is self.tail:
+        if node is self.tail or self.length == 0:
           return
         value = node.value
         self.delete(node)
@@ -179,8 +179,22 @@ class DoublyLinkedList:
 
       return maxVal
 
+    def get(self, val):
+      current = self.head
+      # print(current.value)
+      if not current:
+        return None
+
+      while current:
+        if current.value == val:
+          break
+
+        current = current.next
+
+      return current
+
 # doubly = DoublyLinkedList()
 
 # doubly.add_to_tail(7)
 # doubly.add_to_tail(6)
-# print(doubly.get_max())
+# print(doubly.get(8))

@@ -28,7 +28,17 @@ class LRUCache:
     """
     # moving to tail.
     def get(self, key):
-        pass
+        # how do i retrieve the specific node i need?
+        # might need to write a get for the DLL. get by value
+
+        # this will be none if no item found
+        node = self.dll.get(key)
+
+        if node:
+            self.dll.move_to_end(node)
+            return self.storage[node.value]
+        else:
+            return None
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -53,11 +63,11 @@ class LRUCache:
         self.current += 1
 
 lru = LRUCache(1)
-lru.set('hi', 5)
-# print(lru.current)
-lru.set('bye', 6)
-print(lru.dll.head)
-
+# lru.set('hi', 5)
+# lru.set('bye', 6)
+print(lru.get('nothere'))
+# print(lru.dll.tail)
+# lru.get('hi')
 # doubly = DoublyLinkedList()
 
 # doubly.add_to_tail(7)
