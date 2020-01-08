@@ -29,4 +29,4 @@ class Stack:
 
 stack = Stack()
 
-print(stack.storage)
+# print(stack.storage)
