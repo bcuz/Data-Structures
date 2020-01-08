@@ -70,7 +70,19 @@ class BinarySearchTree:
   # Call the function `cb` on the value of each node
   # You may use a recursive or iterative approach
   def for_each(self, cb):
-    pass
+    queue = Queue()
+
+    queue.enqueue(self)
+
+    while queue.len() > 0:
+      current = queue.dequeue()
+      # need to call func on the value of the node
+      cb(current.value)
+
+      if current.left:
+        queue.enqueue(current.left)
+      if current.right:
+        queue.enqueue(current.right)
 
   # DAY 2 Project -----------------------
 
