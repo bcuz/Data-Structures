@@ -78,9 +78,7 @@ class BinarySearchTree:
       if current.right:
         current = current.right
       else:
-        break
-
-    return current.value
+        return current.value
 
   # Call the function `cb` on the value of each node
   # You may use a recursive or iterative approach
