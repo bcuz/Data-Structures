@@ -3,11 +3,11 @@ sys.path.append('../queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
 
-class Node:
-  def __init__(self, value):
-    self.value = value
-    self.left = None
-    self.right = None
+# class Node:
+#   def __init__(self, value):
+#     self.value = value
+#     self.left = None
+#     self.right = None
 
 class BinarySearchTree:
   def __init__(self, value):
@@ -18,22 +18,22 @@ class BinarySearchTree:
 
   # Insert the given value into the tree
   def insert(self, value):
-    newNode = Node(value)
+    # newNode = Node(value)
     current = self
 
     # iterative is better
     while True:
-      if newNode.value > current.value:
+      if value > current.value:
         if current.right:
           current = current.right
         else:
-          current.right = newNode
+          current.right = BinarySearchTree(value)
           break
-      elif newNode.value < current.value:
+      elif value < current.value:
         if current.left:
           current = current.left
         else:
-          current.left = newNode
+          current.left = BinarySearchTree(value)
           break
 
     # def recursion(current):
