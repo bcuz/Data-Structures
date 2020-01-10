@@ -21,20 +21,16 @@ class BinarySearchTree:
     # newNode = Node(value)
     current = self
 
-    # iterative is better
-    while True:
-      if value > current.value:
-        if current.right:
-          current = current.right
-        else:
-          current.right = BinarySearchTree(value)
-          break
-      elif value < current.value:
-        if current.left:
-          current = current.left
-        else:
-          current.left = BinarySearchTree(value)
-          break
+    if value > current.value:
+      if current.right:
+        current.right.insert(value)
+      else:
+        current.right = BinarySearchTree(value)
+    elif value < current.value:
+      if current.left:
+        current.left.insert(value)
+      else:
+        current.left = BinarySearchTree(value)
 
     # def recursion(current):
     #   if newNode.value > current.value:
