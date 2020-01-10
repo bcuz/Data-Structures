@@ -31,14 +31,23 @@ class LRUCache:
         # how do i retrieve the specific node i need?
         # might need to write a get for the DLL. get by value
 
-        # this will be none if no item found
-        node = self.dll.get(key)
-
-        if node:
-            self.dll.move_to_end(node)
-            return self.storage[node.value]
-        else:
+        if key not in self.storage:
             return None
+
+        # each key holds a node
+        node = self.storage[key]
+
+        # str func of dll file was making things more confusing.
+        # print(node.value)
+
+        self.dll.move_to_end(node)
+        return node.value[1]
+
+        # if node:
+        #     self.dll.move_to_end(node)
+        #     return node.value[1]
+        # else:
+        #     return None
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -53,25 +62,31 @@ class LRUCache:
     def set(self, key, value):
         # if specific key already there, we only update it's value
         if key in self.storage:
-            self.storage[key] = value
+            node = self.storage[key]
+
+            node.value = (key, value)
+
             return
 
         # if already at limit, remove the oldest item
         if self.current == self.limit:
             val = self.dll.remove_from_head()
-            del self.storage[val]
+            
+            del self.storage[val[0]]
             self.current -= 1
 
         # add the new item
-        self.storage[key] = value
-        self.dll.add_to_tail(key)
+        # value is a tuple
+        self.dll.add_to_tail((key,value))
+        # storing the node itself in the dict
+        self.storage[key] = self.dll.tail
         self.current += 1
 
 lru = LRUCache(1)
-# lru.set('hi', 5)
-# lru.set('bye', 6)
-print(lru.get('nothere'))
-# print(lru.dll.tail)
+lru.set('hi', 5)
+# lru.set('hi', 6)
+lru.get('hi')
+# print(lru.storage['hi'])
 # lru.get('hi')
 # doubly = DoublyLinkedList()
 
