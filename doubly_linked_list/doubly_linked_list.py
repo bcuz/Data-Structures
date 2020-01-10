@@ -183,4 +183,4 @@ doubly = DoublyLinkedList()
 
 doubly.add_to_tail(7)
 doubly.add_to_tail(6)
-print(doubly.get_max())
+# print(doubly.get_max())
