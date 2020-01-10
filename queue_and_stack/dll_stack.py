@@ -28,5 +28,6 @@ class Stack:
 
 
 stack = Stack()
+stack.push(1)
 
-# print(stack.storage)
+# print(stack.len())
